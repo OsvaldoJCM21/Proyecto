@@ -1,0 +1,9 @@
+8
+alicates herramienta casa 0.00 0.00 -1902119416 0
+vr vee eve vev nan 2048915320 92
+amperimetro herramienta casa osvaldo 0.00 1816131576 172
+cd 'c:\Users\Elite\Docude de programacion\Segundo 0.00 1816131576 172
+parcial\Anteproyecto segundo parcial\Proyecto\output' & 0.00 1816131576 172
+amperimetro herramienta casa osvaldo 0.00 0 0
+amperimetro2 herramienta casa osvaldo 0.00 0 0
+alicates grandes herramientas casa osvaldo pedro 3000.00 2 2020
