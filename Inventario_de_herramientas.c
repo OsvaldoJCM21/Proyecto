@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h> //Manejo de memoria
+#include <string.h> // Para usar cadenas de caracteres
 
 #define MAX_ACTIVOS 100
 #define MAX_USUARIOS 10
 
-typedef struct {
+typedef struct {            //Estructura llamada activo
     char nombre[50];
     char tipo[20];
     char proyecto[50];
@@ -15,13 +15,15 @@ typedef struct {
     int anio_compra;
 } Activo;
 
-Activo inventario[MAX_ACTIVOS];
+Activo inventario[MAX_ACTIVOS]; // Arreglo de activos llamado inventario con una variable total para saber cuentas activos guarda el inventario.
 int total_activos = 0;
 
-char usuario[50] = "admin";
+char usuario[50] = "admin"; // Credenciales predeterminadas
 char clave[50] = "1234";
 
-void guardarCredenciales() {
+  // Funcion para manejar credenciales y datos 
+
+void guardarCredenciales() {   // Guarda las credenciales en un archivo .txt                 
     FILE *archivo = fopen("credenciales.txt", "w");
     if (archivo == NULL) {
         printf("Error al guardar las credenciales.\n");
@@ -31,7 +33,7 @@ void guardarCredenciales() {
     fclose(archivo);
 }
 
-void cargarCredenciales() {
+void cargarCredenciales() { // Usa el archivo de las credenciales desde el archivo, si existe.Si no,usa los valores predeterminados.
     FILE *archivo = fopen("credenciales.txt", "r");
     if (archivo != NULL) {
         fscanf(archivo, "%s", usuario);
@@ -42,7 +44,7 @@ void cargarCredenciales() {
     }
 }
 
-void guardarDatos() {
+void guardarDatos() { // Guarda la informacion de los activos en un archivo y sus detalles llamado (inventario.txt)
     FILE *archivo = fopen("inventario.txt", "w");
     if (archivo == NULL) {
         printf("Error al guardar los datos.\n");
@@ -57,7 +59,7 @@ void guardarDatos() {
     fclose(archivo);
 }
 
-void cargarDatos() {
+void cargarDatos() { // imprime los datos de los activos desde el archivo, si existe.
     FILE *archivo = fopen("inventario.txt", "r");
     if (archivo == NULL) {
         printf("No se encontraron datos guardados.\n");
@@ -72,7 +74,9 @@ void cargarDatos() {
     fclose(archivo);
 }
 
-void cambiarCredenciales() {
+//Funciones de Gestión de Activos
+
+void cambiarCredenciales() { // Permite cambiar el usuario y la clave si se ingresa la clave actual bien.
     char clave_actual[50];
     printf("Ingrese la clave actual: ");
     scanf("%s", clave_actual);
@@ -89,7 +93,7 @@ void cambiarCredenciales() {
     }
 }
 
-void agregarActivo() {
+void agregarActivo() { // Permite agregar un nuevo activo al inventario.Pregunta al usuario los datos del activo y los alamcena en el arreglo.
     if (total_activos >= MAX_ACTIVOS) {
         printf("No se pueden agregar mas activos.\n");
         return;
@@ -128,12 +132,12 @@ void agregarActivo() {
     printf("Activo agregado con exito.\n");
 }
 
-float calcularDepreciacion(Activo activo) {
+float calcularDepreciacion(Activo activo) { // Calcula la depreciacion anual de un activo dividiendo su valor original entre su vida util.
     // Depreciación anual
     return activo.valor_original / activo.vida_util;
 }
 
-void consultarActivos() {
+void consultarActivos() { // Muestra detalles de todos los activos almacenados en el inventario y calcula la depreciacion anual de cada uno.
     for (int i = 0; i < total_activos; i++) {
         printf("Activo %d:\n", i + 1);
         printf("Nombre: %s\n", inventario[i].nombre);
@@ -149,7 +153,7 @@ void consultarActivos() {
     }
 }
 
-void desasignarActivo() {
+void desasignarActivo() { // Permite eliminar activos.
     int indice;
     consultarActivos();
 
@@ -178,7 +182,7 @@ void desasignarActivo() {
 void menu() {
     int opcion;
     do {
-        printf("\n--- Menu de Inventario ---\n");
+        printf("\n Menu de Inventario \n");
         printf("1. Agregar activo\n");
         printf("2. Consultar activos\n");
         printf("3. Desasignar activo\n");
@@ -195,7 +199,7 @@ void menu() {
                 consultarActivos();
                 break;
             case 3:
-                desasignarActivo();
+                desasignarActivo(); 
                 break;
             case 4:
                 cambiarCredenciales();
